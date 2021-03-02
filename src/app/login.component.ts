@@ -20,8 +20,15 @@ export class LoginComponent implements OnInit {
       pkce: true
     },
          clientId: '0oa86pz8gD2KvS0qw5d6',
-         redirectUri: 'http://localhost:4200/login/callback'
-  });
+         redirectUri: 'http://localhost:4200/login/callback',
+    
+         features: {
+          idpDiscovery: true
+        }    
+  }
+  
+  
+  );
 
   constructor(oktaAuth: OktaAuthService, router: Router) {
     this.authService = oktaAuth;
@@ -34,6 +41,9 @@ export class LoginComponent implements OnInit {
             break;
           case '/protected':
             break;
+          case '/register':
+              break;
+            
           default:
             this.widget.remove();
             break;
@@ -43,6 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.widget.showSignInAndRedirect().catch(err => {
       throw(err);
     });

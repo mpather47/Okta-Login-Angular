@@ -1,7 +1,9 @@
+import { RegisterService } from './services/register.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule} from '@angular/common/http';
 import {
   OKTA_CONFIG,
   OktaAuthModule,
@@ -12,6 +14,9 @@ import {
 import { AppComponent } from './app.component';
 import { ProtectedComponent } from './protected.component';
 import { LoginComponent } from './login.component';
+import { RegisterComponent } from './register/register.component';
+
+
 
 const config = {
   issuer: 'https://dev-96827083.okta.com/oauth2/default',
@@ -28,6 +33,7 @@ export function onAuthRequired(oktaAuth, injector) {
 }
 
 const appRoutes: Routes = [
+  
   {
     path: 'login/callback',
     component: OktaCallbackComponent
@@ -42,22 +48,29 @@ const appRoutes: Routes = [
     canActivate: [ OktaAuthGuard ],
     data: {
       onAuthRequired
-    }
+    },
   }
+  
 ]
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    ProtectedComponent
-  ],
+  
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    OktaAuthModule
+    OktaAuthModule,
+    FormsModule,                               
+    ReactiveFormsModule,
+    HttpClientModule     
+  ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ProtectedComponent,
+    RegisterComponent
+    
   ],
   providers: [
-    { provide: OKTA_CONFIG, useValue: config },
+    { provide: OKTA_CONFIG, useValue: config },RegisterService
   ],
   bootstrap: [AppComponent]
 })

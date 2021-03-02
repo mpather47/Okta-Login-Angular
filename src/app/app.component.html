@@ -33,9 +33,7 @@
     font-weight: 600;
   }
 
- .buttons{
-  float: right;
- }
+ 
 
 button{
   background-color: white; /* Green */
@@ -58,17 +56,34 @@ button{
   .jumbotron {
   min-width: 585px;
   margin: 10px auto;
-  display: flex;
+  display: block;
   justify-content: center;
   margin: 10px 10px 10px 10px;
   border: 0.08em solid black;
 }
-</style>
 
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+
+</style>
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <link href="https://global.oktacdn.com/okta-signin-widget/5.3.3/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
- 
+
+
  <div class="x">
 
   
@@ -84,19 +99,32 @@ button{
 <div class="content" role="main">
   <div class="container">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <h1 class="text-center">Okta Login Demo</h1>
     <br>
-    <div *ngIf="!isAuthenticated" id="messageBox" class="jumbotron">
-      You are not logged in. Get outta here! Shoo! 🤨
+    <div *ngIf="!isAuthenticated"  id="messageBox" class="jumbotron">
+      <p>You are not logged in. Please sign up or login? 😁</p>
+      <br>
+      <button class="extsignup" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+      <br>
+      
     </div>
     <div *ngIf="isAuthenticated" id="messageBox" class="jumbotron">
-      You are now logged in! 😇
+      <p>You are now logged in! 😇</p>
+      
+
     </div>
     <br>
-  
-    <!-- where the sign-in form will be displayed -->
+    <a href="https://dev-96827083.okta.com/oauth2/v1/authorize?idp=0oa9xz747txkQcl6I5d6&client_id=0oa86pz8gD2KvS0qw5d6&response_type=id_token&response_mode=fragment&scope=openid%20email&redirect_uri=http://localhost:4200/login/callback&state=WM6D&nonce=YsG76jo">Sign in with Identity Provider</a>
     
+
+    <!-- where the sign-in form will be displayed -->
   </div>
+
+<register></register>
+
+
+
 
 </div>
 
@@ -110,3 +138,17 @@ button{
 
 
 <router-outlet></router-outlet>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
+  
+

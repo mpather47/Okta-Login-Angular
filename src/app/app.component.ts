@@ -11,7 +11,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 export class AppComponent implements OnInit {
   title = 'okta-app';
   isAuthenticated: boolean;
-
+  name_test: String = "";
   constructor(public oktaAuth: OktaAuthService, public router: Router) {
     // Subscribe to authentication state changes
     this.oktaAuth.$authenticationState.subscribe(
